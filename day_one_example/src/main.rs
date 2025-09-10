@@ -1,5 +1,6 @@
 
-
+//this test was from todays lecture
+// --- IGNORE ---
 // fn compute(a: u32, b: u32) -> u32 {
 //     a + b * 2
 // }
@@ -21,7 +22,7 @@
 // }
 
 
-use day_one_example::{quadratic, scale_vector, dot_product};
+use day_one_example::{quadratic, scale_vector, dot_product, hadamard_product};
 
 fn main() {
     println!("Hello, world!");
@@ -29,5 +30,6 @@ fn main() {
     println!("quadratic(1, 2, 3, 4) = {}", quadratic(1, 2, 3, 4));
     println!("scale_vector(5.0, (3.0, 4.0)) = {:?}", scale_vector(5.0, (3.0, 4.0)));
     println!("dot_product((2.0, 5.0), (7.0, 1.0)) = {}", dot_product((2.0, 5.0), (7.0, 1.0)));
+    println!("hadamard_product((2.0, 5.0), (7.0, 1.0)) = {:?}", hadamard_product((2.0, 5.0), (7.0, 1.0)));
 
 }

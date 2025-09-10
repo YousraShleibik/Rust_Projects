@@ -30,6 +30,16 @@ pub fn dot_product(vector1:(f32,f32), vector2:(f32,f32))-> f32{
     vector1.0 * vector2.0 + vector1.1 * vector2.1
 }
 
+//Problem Four
+//function :hadamard_product
+// Description: takes two 2-tuples which represent two dimensional vectors and calculates the Hadamard product of the vectors
+//which is calculated as (x1 * x2, y1 * y2) where (x1, y1) and (x2, y2) are the two input vectors.
+//input ((f32, f32), (f32, f32))
+//output (f32, f32)
+
+pub fn hadamard_product(vector1:(f32,f32), vector2:(f32,f32))-> (f32,f32){
+    (vector1.0 * vector2.0, vector1.1 * vector2.1)
+}
 
 
 #[cfg(test)]
@@ -47,5 +57,10 @@ mod tests {
     #[test]
     fn test_dot_product(){
         assert_eq!(dot_product((2.0, 5.0), (7.0, 1.0)), 19.0); // 2*7 + 5*1
+    }
+
+    #[test]
+    fn test_hadamard_product(){
+        assert_eq!(hadamard_product((2.0, 5.0), (7.0, 1.0)), (14.0, 5.0)); // (2*7, 5*1)
     }
 }
