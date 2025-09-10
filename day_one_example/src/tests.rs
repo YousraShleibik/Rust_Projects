@@ -1,4 +1,4 @@
-pub fn compute (a: u32, b: u32) -> u32 {
+fn compute (a: u32, b: u32) -> u32 {
  a + b * 2
 }
 
@@ -7,7 +7,7 @@ pub fn compute (a: u32, b: u32) -> u32 {
 
 #[cfg(test)]
 mod tests {
-use create::compute;
+use crate::compute;
 
 #[test]
 fn  case(){
