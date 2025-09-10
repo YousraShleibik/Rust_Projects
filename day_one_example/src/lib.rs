@@ -8,6 +8,16 @@ pub fn quadratic(a:u32, b:u32, c:u32, x:u32)->u32{
     a + b*x + c*x*x
 }
 
+//Problem Two
+//Function: scale_vector
+//Description: single floating point number along with a 2-tuple which represents a two dimensional vector. 
+// The function should return a 2-tuple which represents the vector scaled by the value
+//input (f32, (f32, f32))
+//output (f32, f32)
+pub fn scale_vector(point: f32, vector:(f32,f32))-> (f32,f32){
+    (point*vector.0, point*vector.1)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -15,5 +25,9 @@ mod tests {
     #[test]
     fn test_quadratic() {
         assert_eq!(quadratic(1, 2, 3, 3), 34); // 1 + 2*3 + 3*9
+    }
+    #[test]
+    fn test_scale_vector() {
+        assert_eq!(scale_vector(5.0, (3.0, 4.0)), (15.0, 20.0));
     }
 }
