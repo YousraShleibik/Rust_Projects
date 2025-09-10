@@ -21,12 +21,13 @@
 // }
 
 
-use day_one_example::{quadratic, scale_vector};
+use day_one_example::{quadratic, scale_vector, dot_product};
 
 fn main() {
     println!("Hello, world!");
 
     println!("quadratic(1, 2, 3, 4) = {}", quadratic(1, 2, 3, 4));
     println!("scale_vector(5.0, (3.0, 4.0)) = {:?}", scale_vector(5.0, (3.0, 4.0)));
+    println!("dot_product((2.0, 5.0), (7.0, 1.0)) = {}", dot_product((2.0, 5.0), (7.0, 1.0)));
 
 }
