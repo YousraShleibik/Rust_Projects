@@ -39,6 +39,26 @@ fn map_elements(f: fn(u32) -> u32, arr: &mut [u32]) {
     }
 }
 
+// Problem 4: Count the number of true and false values in an array
+// Function: count_true_and_false
+// Parameters: 
+//   arr - a slice of boolean values (&[bool])
+// Returns: a tuple (u32, u32)
+//   First element = number of true values
+//   Second element = number of false values
+fn count_true_and_false(arr: &[bool]) -> (u32, u32) {
+    let mut true_count = 0;
+    let mut false_count = 0;
+    for i in 0..arr.len() {
+        if arr[i] {
+            true_count += 1;
+        } else {
+            false_count += 1;
+        }
+    }
+    (true_count, false_count)
+}
+
 fn main() {
       // Problem 1 demo
     let chars = ['b', 'b', 'a', 'c', 'a'];
@@ -55,5 +75,12 @@ fn main() {
     let mut nums2 = [1, 3, 5];
     map_elements(subtract_one, &mut nums2);
     println!("map_elements(subtract_one) = {:?}", nums2);
+
+     // Problem 4 demo
+    let bools = [true, false, true, true, false];
+    let (t, f) = count_true_and_false(&bools);
+    println!("count_true_and_false = (true={}, false={})", t, f);
    
 }
+
+
