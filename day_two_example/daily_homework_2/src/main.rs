@@ -25,16 +25,34 @@ fn all_different(arr: &[u32]) -> bool {
     
 }
 
+//all_different_except_zeros
+fn all_different_except_zeros(arr: &[u32]) -> bool {
+    for i in 0..arr.len() {
+        for j in (i + 1)..arr.len() {
+            if arr[i] != 0 && arr[j] != 0 && arr[i] == arr[j] {
+                println!("Duplicate non-zero found: {}", arr[i]);
+                return false; // duplicate non-zero found
+            }
+        }
+    }
+    true
+}
+
 fn main() {
      
     let arr1 = [2, 3, 4];
-    let arr2 = [6, 6, 6];
+    let arr2 = [6, 6, 6, 0, 0];
+    let arr3 = [0, 1, 2, 3, 0];
 
     // Multiply all numbers in arr1 → 2*3*4 = 24 
     println!("multiply_array(arr1) = {}", multiply_array(&arr1));
 
     // Check if all numbers in arr1 are different → true
-     println!("all_different(arr1) = {}", all_different(&arr2));
+    println!("all_different(arr2) = {}", all_different(&arr2));
+
+    // Check if all numbers in arr2 are different except zeros → true
+    println!("all_different_except_zeros(arr3) = {}", all_different_except_zeros(&arr3));
+    
 
     
 }
