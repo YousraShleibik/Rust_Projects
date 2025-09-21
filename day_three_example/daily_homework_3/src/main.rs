@@ -15,9 +15,26 @@ fn count_occurrences(ch: char, arr: &[char]) -> u32 {
     count
 }
 
+
+// Problem 2: Square each element of an array
+// Function: square_elements
+// Parameters: 
+//   arr - a mutable slice of 32-bit unsigned integers (&mut [u32])
+// Returns: nothing (the array is modified in place)
+fn square_elements(arr: &mut [u32]) {
+    for i in 0..arr.len() {
+        arr[i] = arr[i] * arr[i]; // replace each element with its square
+    }
+}
+
 fn main() {
       // Problem 1 demo
     let chars = ['b', 'b', 'a', 'c', 'a'];
     println!("count_occurrences('b') = {}", count_occurrences('b', &chars));
+
+    // Problem 2 demo
+    let mut nums = [1, 3, 5];
+    square_elements(&mut nums);
+    println!("square_elements of [1, 3, 5] = {:?}", nums);
    
 }
