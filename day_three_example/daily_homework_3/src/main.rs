@@ -27,6 +27,18 @@ fn square_elements(arr: &mut [u32]) {
     }
 }
 
+// Problem 3: Apply a given function to each element of an array
+// Function: map_elements
+// Parameters: 
+//   f   - a function pointer (fn(u32) -> u32)
+//   arr - a mutable slice of 32-bit unsigned integers (&mut [u32])
+// Returns: nothing (the array is modified in place)
+fn map_elements(f: fn(u32) -> u32, arr: &mut [u32]) {
+    for i in 0..arr.len() {
+        arr[i] = f(arr[i]); // apply the function to each element
+    }
+}
+
 fn main() {
       // Problem 1 demo
     let chars = ['b', 'b', 'a', 'c', 'a'];
@@ -36,5 +48,12 @@ fn main() {
     let mut nums = [1, 3, 5];
     square_elements(&mut nums);
     println!("square_elements of [1, 3, 5] = {:?}", nums);
+
+
+        // Problem 3 demo
+    fn subtract_one(x: u32) -> u32 { x - 1 }
+    let mut nums2 = [1, 3, 5];
+    map_elements(subtract_one, &mut nums2);
+    println!("map_elements(subtract_one) = {:?}", nums2);
    
 }
