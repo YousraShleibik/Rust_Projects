@@ -24,7 +24,7 @@ loop {
             || input.eq_ignore_ascii_case("exit")
             || input.eq_ignore_ascii_case("quit")
         {
-            println!("game ended after {guesses} guesses.");
+            println!("Goodbye — game ended after {guesses} guesses.");
             break;
         }
 
