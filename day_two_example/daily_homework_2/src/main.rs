@@ -72,7 +72,7 @@ fn dot_product(a: &[u32], b: &[u32]) -> u32 {
 fn main() {
      
     let arr1 = [2, 3, 4];
-    let arr2 = [6, 6, 6, 0, 0];
+    let arr2 = [6, 3, 2, 0, 0];
     let arr3 = [0, 1, 2, 3, 0];
 
     // Multiply all numbers in arr1 → 2*3*4 = 24 
@@ -87,4 +87,81 @@ fn main() {
     // Dot product of arr2 and arr3
     println!("dot_product(arr2, arr3) = {}", dot_product(&arr2, &arr3));
 
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // --- multiply_array tests ---
+    #[test]
+    fn multiply_basic() {
+        assert_eq!(multiply_array(&[2, 3, 4]), 24);
+    }
+
+    #[test]
+    fn multiply_with_zero() {
+        assert_eq!(multiply_array(&[5, 0, 7]), 0);
+    }
+
+    #[test]
+    fn multiply_empty_is_one() {
+        // By convention here, product of empty slice = 1 (neutral element)
+        let empty: [u32; 0] = [];
+        assert_eq!(multiply_array(&empty), 1);
+    }
+
+
+    // --- Check all_different tests ---
+    #[test]
+    fn all_diff_true_when_unique() {
+        assert!(all_different(&[1, 2, 3, 4]));
+    }
+
+    #[test]
+    fn all_diff_false_when_duplicate_present() {
+        assert!(!all_different(&[1, 2, 2, 3]));
+    }
+
+    #[test]
+    fn all_diff_handles_zeros_like_any_value() {
+        assert!(!all_different(&[0, 1, 0]));
+    }
+
+    // --- all_different_except_zeros tests ---
+    #[test]
+    fn all_diff_except_zeros_true_when_only_zeros_repeat() {
+        assert!(all_different_except_zeros(&[0, 1, 2, 0, 3]));
+    }
+
+    #[test]
+    fn all_diff_except_zeros_false_when_nonzero_repeats() {
+        assert!(!all_different_except_zeros(&[0, 2, 2, 0]));
+    }
+
+     // --- dot_product tests ---
+    #[test]
+    fn dot_product_basic() {
+        // (1*4) + (2*5) + (3*6) = 32
+        assert_eq!(dot_product(&[1, 2, 3], &[4, 5, 6]), 32);
+    }
+
+    #[test]
+    fn dot_product_with_zeros() {
+        assert_eq!(dot_product(&[0, 10], &[99, 1]), 10);
+    }
+  #[test]
+    fn dot_product_empty_is_zero() {
+        let a: [u32; 0] = [];
+        let b: [u32; 0] = [];
+        assert_eq!(dot_product(&a, &b), 0);
+    }
+
+    #[test]
+    #[should_panic(expected = "Arrays must be the same length")]
+    fn dot_product_unequal_lengths_panics() {
+        let a = [1, 2];
+        let b = [1];
+        let _ = dot_product(&a, &b);
+    }
 }
