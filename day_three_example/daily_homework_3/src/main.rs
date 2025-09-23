@@ -84,3 +84,92 @@ fn main() {
 }
 
 
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // --- count_occurrences tests ---
+    #[test]
+    fn count_occurrences_basic() {
+        let chars = ['a', 'b', 'a', 'c'];
+        assert_eq!(count_occurrences('a', &chars), 2);
+    }
+
+    #[test]
+    fn count_occurrences_none() {
+        let chars = ['x', 'y', 'z'];
+        assert_eq!(count_occurrences('a', &chars), 0);
+    }
+
+    #[test]
+    fn count_occurrences_all_same() {
+        let chars = ['m', 'm', 'm'];
+        assert_eq!(count_occurrences('m', &chars), 3);
+    }
+
+    // --- square_elements tests ---
+    #[test]
+    fn square_elements_basic() {
+        let mut nums = [1, 2, 3];
+        square_elements(&mut nums);
+        assert_eq!(nums, [1, 4, 9]);
+    }
+
+    #[test]
+    fn square_elements_with_zero() {
+        let mut nums = [0, 5, 10];
+        square_elements(&mut nums);
+        assert_eq!(nums, [0, 25, 100]);
+    }
+
+    #[test]
+    fn square_elements_empty() {
+        let mut nums: [u32; 0] = [];
+        square_elements(&mut nums);
+        assert_eq!(nums, []);
+    }
+
+    // --- map_elements tests ---
+    fn add_one(x: u32) -> u32 { x + 1 }
+    fn double(x: u32) -> u32 { x * 2 }
+
+    #[test]
+    fn map_elements_add_one() {
+        let mut nums = [1, 2, 3];
+        map_elements(add_one, &mut nums);
+        assert_eq!(nums, [2, 3, 4]);
+    }
+
+    #[test]
+    fn map_elements_double() {
+        let mut nums = [2, 4, 6];
+        map_elements(double, &mut nums);
+        assert_eq!(nums, [4, 8, 12]);
+    }
+
+    #[test]
+    fn map_elements_empty() {
+        let mut nums: [u32; 0] = [];
+        map_elements(add_one, &mut nums);
+        assert_eq!(nums, []);
+    }
+
+    // --- count_true_and_false tests ---
+    #[test]
+    fn count_true_and_false_mixed() {
+        let arr = [true, false, true];
+        assert_eq!(count_true_and_false(&arr), (2, 1));
+    }
+
+    #[test]
+    fn count_true_and_false_all_true() {
+        let arr = [true, true, true];
+        assert_eq!(count_true_and_false(&arr), (3, 0));
+    }
+
+    #[test]
+    fn count_true_and_false_all_false() {
+        let arr = [false, false];
+        assert_eq!(count_true_and_false(&arr), (0, 2));
+    }
+}
