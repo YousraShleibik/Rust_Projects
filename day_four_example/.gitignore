@@ -1,0 +1,36 @@
+# --- Rust build artifacts ---
+/target/
+debug/
+release/
+**/*.rs.bk
+
+# Keep Cargo.lock for binaries/apps (most homework crates are apps).
+# If you publish a library crate, you may ignore Cargo.lock there.
+
+# --- Editors/IDEs ---
+.vscode/
+.idea/
+*.iml
+*.code-workspace
+
+# --- OS noise ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+# Linux & temp
+*~
+.#*
+.nfs*
+*.swp
+*.swo
+
+# --- Misc ---
+*.log
+.env
+.env.*
