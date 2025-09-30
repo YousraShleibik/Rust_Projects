@@ -1,1 +1,5 @@
-Hello World!  
+Hello World! 
+
+print 1
+var x = 42
+if x
