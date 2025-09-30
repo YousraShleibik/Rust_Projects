@@ -1,4 +1,16 @@
 
+/// PURPOSE:
+///   Read a UTF-8 text file and return its lines as a `Vec<String>`.
+///   Newline characters are not included in the returned lines.
+///
+/// PARAMETERS:
+///   - `filename: &str` — path to the file to read.
+///
+/// RETURNS:
+///   - `Vec<String>` — each element is one line from the file (order preserved).
+///
+/// TYPE:
+///   fn read_program_file(filename: &str) -> Vec<String>
 pub fn read_program_file(filename: &str) -> Vec<String> {
     match std::fs::read_to_string(filename) {
         Ok(text) => text.lines().map(|s| s.to_string()).collect(),
@@ -11,8 +23,18 @@ pub fn read_program_file(filename: &str) -> Vec<String> {
 
 
 
-
-
+/// PURPOSE:
+///   Determine whether a given word is one of the language keywords:
+///   and, class, else, false, for, fun, if, nil, or, print, return, super, this, true, var, while.
+///
+/// PARAMETERS:
+///   - `word: &str` — the token/text to check (case-sensitive).
+///
+/// RETURNS:
+///   - `bool` — `true` if `word` is a keyword; otherwise `false`.
+///
+/// TYPE:
+///   fn is_keyword(word: &str) -> bool
 pub fn is_keyword(word: &str) -> bool {
     matches!(
         word,
@@ -37,11 +59,34 @@ pub fn is_keyword(word: &str) -> bool {
 
 
 
-
+/// PURPOSE:
+///   Split a string into words using Unicode whitespace as separators
+///   (spaces, tabs, newlines, etc.). Whitespace is not included in the output.
+///
+/// PARAMETERS:
+///   - `s: &str` — the input text to split.
+///
+/// RETURNS:
+///   - `Vec<String>` — the words/tokens obtained by splitting on whitespace.
+///
+/// TYPE:
+///   fn split_string(s: &str) -> Vec<String>
 pub fn split_string(s: &str) -> Vec<String> {
     s.split_whitespace().map(|w| w.to_string()).collect()
 }
 
+/// PURPOSE:
+///   Read an entire file and return all words obtained by splitting on whitespace.
+///   This simply combines `read_to_string` with `split_string`.
+///
+/// PARAMETERS:
+///   - `filename: &str` — path to the file to read.
+///
+/// RETURNS:
+///   - `Vec<String>` — all words from the file, in order.
+///
+/// TYPE:
+///   fn split_file_into_words(filename: &str) -> Vec<String>
 pub fn split_file_into_words(filename: &str) -> Vec<String> {
     match std::fs::read_to_string(filename) {
         Ok(text) => split_string(&text),
