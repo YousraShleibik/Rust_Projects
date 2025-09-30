@@ -1,14 +1,16 @@
-use std::fs::File;
-use std::io::{self, BufRead, BufReader};
 
-pub fn read_program_file(filename: &str) -> io::Result<Vec<String>> {
-    let file = File::open(filename)?;
-    let reader = BufReader::new(file);
-    reader
-        .lines()
-        .map(|res| res.map(|line| line.trim_end_matches('\r').to_string()))
-        .collect()
+pub fn read_program_file(filename: &str) -> Vec<String> {
+    match std::fs::read_to_string(filename) {
+        Ok(text) => text.lines().map(|s| s.to_string()).collect(),
+        Err(err) => {
+            eprintln!("Failed to read '{}': {}", filename, err);
+            Vec::new()
+        }
+    }
 }
+
+
+
 
 
 pub fn is_keyword(word: &str) -> bool {
@@ -33,26 +35,40 @@ pub fn is_keyword(word: &str) -> bool {
     )
 }
 
-fn main() {
-    match read_program_file("program.txt") {
-        Ok(lines) => {
-            println!(" Successfully read 'program.txt' ({} line(s)).", lines.len());
-            for (i, line) in lines.iter().enumerate() {
-                println!("{i}: {line}");
 
 
-                for word in line.split_whitespace() {
-                    if is_keyword(word) {
-                        println!("   -> '{word}' is a keyword");
-                    } else {
-                        println!("   -> '{word}' is NOT a keyword");
-                    }
-                }
-            }
-            
-        }
-        Err(e) => {
-            eprintln!("Could not open/read 'program.txt': {e}");
+
+pub fn split_string(s: &str) -> Vec<String> {
+    s.split_whitespace().map(|w| w.to_string()).collect()
+}
+
+pub fn split_file_into_words(filename: &str) -> Vec<String> {
+    match std::fs::read_to_string(filename) {
+        Ok(text) => split_string(&text),
+        Err(err) => {
+            eprintln!("Failed to read '{}': {}", filename, err);
+            Vec::new()
         }
     }
+}
+
+
+
+
+fn main() {
+    let lines = read_program_file("program.txt");
+    if lines.is_empty() {
+        eprintln!("(No lines read — file missing, empty, or unreadable.)");
+    } else {
+        println!(" Successfully read 'program.txt' ({} line(s)).", lines.len());
+        for (i, line) in lines.iter().enumerate() {
+            println!("{i}: {line}");
+            for w in line.split_whitespace() {
+                println!("   -> '{w}' keyword? {}", is_keyword(w));
+            }
+        }
+    }
+
+    let words = split_file_into_words("program.txt");
+    println!("Total words found: {}", words.len());
 }
