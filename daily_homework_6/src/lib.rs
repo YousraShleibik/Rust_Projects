@@ -1,3 +1,10 @@
+
+/// Add one to every element in the given vector **in place**.
+/// # Parameters
+/// - `v`: `&mut Vec<u32>` — mutable reference to a vector of 32-bit unsigned integers.
+/// # Returns
+/// - `()` — no return value; the input vector is modified directly.
+///
 pub fn add_one(v: &mut Vec<u32>) {
     for x in v.iter_mut() {
         *x += 1;
@@ -5,11 +12,22 @@ pub fn add_one(v: &mut Vec<u32>) {
 }
 
 
+/// Compute the total (sum) of all elements in the given vector using an iterator.
+/// # Parameters
+/// - `v`: `&Vec<u32>` — reference to a vector of 32-bit unsigned integers.
+/// # Returns
+/// - `u32` — sum of all elements (wraps on `u32` overflow as per Rust semantics).
+
 pub fn get_total(v: &Vec<u32>) -> u32 {
     v.iter().copied().sum()
 }
 
-
+/// Convert a vector of `(u32, u32)` pairs into a vector of their pairwise sums.
+/// Implemented in **one line** using `into_iter()` + `map()` + `collect()`.
+/// # Parameters
+/// - `pairs`: `Vec<(u32, u32)>` — vector of 32-bit unsigned integer tuples.
+/// # Returns
+/// - `Vec<u32>` — vector where each element is `a + b` for `(a, b)` in `pairs`.
 pub fn sum_tuple(pairs: Vec<(u32, u32)>) -> Vec<u32> {
     pairs.into_iter().map(|(a, b)| a + b).collect()
 }
